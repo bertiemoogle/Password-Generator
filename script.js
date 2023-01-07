@@ -88,7 +88,10 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// Concatenate the arrays and shuffle them
+
 const characterArray = specialCharacters.concat(numericCharacters, upperCasedCharacters, lowerCasedCharacters);
+
 function shuffle(characterArray) {
   for (let i = characterArray.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -97,7 +100,9 @@ function shuffle(characterArray) {
 }
 
 // Function to prompt user for password options
+
 let passwordLength;
+
 function getPasswordOptions() {
   passwordLength = prompt("How long would you like your password to be? (Must be at least 10 characters and no more than 64 characters)")
   if (passwordLength < 10) {
@@ -110,6 +115,8 @@ function getPasswordOptions() {
 }
 
 getPasswordOptions()
+
+// Generate random characters and push them into an array
 
 let password = [];
 let randomChar;
