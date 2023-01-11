@@ -155,6 +155,8 @@ for (let i = 0; i < passwordLength; i++) {
 
 passwordArray.length = passwordArray.length / 4 - 1;
 
+password = passwordArray.join('');
 
 console.log(passwordLength);
 console.log(passwordArray);
+console.log(password);
