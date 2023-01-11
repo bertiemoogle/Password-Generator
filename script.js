@@ -98,6 +98,7 @@ let numCharChoice;
 let lowCaseChar;
 let upperCaseChar;
 
+// Function to prompt user for password options
 function getPasswordOptions() {
   passwordLength = prompt("How long would you like your password to be? (Must be at least 10 characters and no more than 64 characters)")
   if (passwordLength < 10) {
@@ -118,6 +119,7 @@ function getPasswordOptions() {
 
 }
 
+// Function for getting a random element from an array
 function getRandom() {
   if (spCharChoice === "y") {
     randomItem = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
@@ -148,15 +150,33 @@ function getRandom() {
 getPasswordOptions()
 getRandom()
 
-
-for (let i = 0; i < passwordLength; i++) {
-  getRandom()
+// Function to generate password with user input
+function generatePassword() {
+  for (let i = 0; i < passwordLength; i++) {
+    getRandom()
+  }
+  
+  passwordArray.length = passwordArray.length / 4 - 1;
+  
+  password = passwordArray.join('');
 }
 
-passwordArray.length = passwordArray.length / 4 - 1;
+generatePassword()
 
-password = passwordArray.join('');
-
-console.log(passwordLength);
 console.log(passwordArray);
 console.log(password);
+
+// Get references to the #generate element
+var generateBtn = document.querySelector('#generate');
+
+// Write password to the #password input
+function writePassword() {
+  var passwordText = document.querySelector('#password');
+
+  passwordText.value = password;
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
+
+writePassword()
