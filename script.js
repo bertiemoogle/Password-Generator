@@ -91,7 +91,6 @@ var upperCasedCharacters = [
 let passwordArray = [];
 let passwordLength;
 let password = [];
-let randomChar;
 let randomItem;
 let spCharChoice;
 let numCharChoice;
@@ -113,9 +112,9 @@ function getPasswordOptions() {
 
   numCharChoice = prompt("Do you want to include a numeric character in your password? (y/n)");
 
-  lowCaseChar = prompt("Do you want to include a lower case character in your password? (y/n)");
+  lowCaseChar = prompt("Do you want to include a lowercase character in your password? (y/n)");
 
-  upperCaseChar = prompt("Do you want to include an upper case character in your password? (y/n)");
+  upperCaseChar = prompt("Do you want to include an uppercase character in your password? (y/n)");
 
 }
 
@@ -126,26 +125,26 @@ function getArray() {
   if (spCharChoice === "y") {
     passwordArray = passwordArray.concat(specialCharacters);
   } else if (spCharChoice === "no") {
-  	passwordArray = passwordArray;
+    passwordArray = passwordArray;
   }
   if (numCharChoice === "y") {
     passwordArray = passwordArray.concat(numericCharacters);
   } else if (numCharChoice === "no") {
-  	passwordArray = passwordArray.concat(specialCharacters);
+    passwordArray = passwordArray.concat(specialCharacters);
   }
   if (lowCaseChar === "y") {
     passwordArray = passwordArray.concat(lowerCasedCharacters);
   } else if (lowCaseChar === "no") {
-  	passwordArray = passwordArray.concat(specialCharacters, numericCharacters);
+    passwordArray = passwordArray.concat(specialCharacters, numericCharacters);
   }
   if (upperCaseChar === "y") {
     passwordArray = passwordArray.concat(upperCasedCharacters);
   } else if (upperCaseChar === "no") {
-  	passwordArray = passwordArray.concat(specialCharacters, numericCharacters, lowerCasedCharacters);
+    passwordArray = passwordArray.concat(specialCharacters, numericCharacters, lowerCasedCharacters);
   }
 
-  for (let i = passwordArray.length -1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i+1));
+  for (let i = passwordArray.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
     let k = passwordArray[i];
     passwordArray[i] = passwordArray[j];
     passwordArray[j] = k;
@@ -162,13 +161,9 @@ function generatePassword() {
   for (let i = 0; i < passwordLength; i++) {
     getRandom()
   }
-  
+
   password = password.join('');
 }
-
-console.log("Password array length is: " + passwordArray.length);
-console.log("Password is: " + password);
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
