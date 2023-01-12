@@ -119,8 +119,6 @@ function getPasswordOptions() {
 
 }
 
-getPasswordOptions()
-
 passwordLength = parseInt(passwordLength);
 
 // Function for getting a random element from an array
@@ -154,16 +152,10 @@ function getArray() {
   }
 }
 
-getArray()
-
-console.log("Password length is: " + passwordLength);
-
 function getRandom() {
   randomItem = passwordArray[Math.floor(Math.random() * passwordArray.length)];
   password.push(randomItem)
 }
-
-console.log("Password array is: " + passwordArray);
 
 // Function to generate password with user input
 function generatePassword() {
@@ -173,8 +165,6 @@ function generatePassword() {
   
   password = password.join('');
 }
-
-generatePassword()
 
 console.log("Password array length is: " + passwordArray.length);
 console.log("Password is: " + password);
