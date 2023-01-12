@@ -90,7 +90,7 @@ var upperCasedCharacters = [
 
 let passwordArray = [];
 let passwordLength;
-let password;
+let password = [];
 let randomChar;
 let randomItem;
 let spCharChoice;
@@ -119,36 +119,51 @@ function getPasswordOptions() {
 
 }
 
+getPasswordOptions()
+
+passwordLength = parseInt(passwordLength);
+
 // Function for getting a random element from an array
-function getRandom() {
+function getArray() {
   if (spCharChoice === "y") {
-    randomItem = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-    passwordArray.push(randomItem)
-  } else if (spCharChoice === "n") {
-    passwordArray.push("X");
+    passwordArray = passwordArray.concat(specialCharacters);
+  } else if (spCharChoice === "no") {
+  	passwordArray = passwordArray;
   }
   if (numCharChoice === "y") {
-    randomItem = numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
-    passwordArray.push(randomItem)
-  } else if (numCharChoice === "n") {
-    passwordArray.push("Y");
+    passwordArray = passwordArray.concat(numericCharacters);
+  } else if (numCharChoice === "no") {
+  	passwordArray = passwordArray.concat(specialCharacters);
   }
   if (lowCaseChar === "y") {
-    randomItem = lowerCasedCharacters[Math.floor(Math.random() * lowerCasedCharacters.length)];
-    passwordArray.push(randomItem)
-  } else if (lowCaseChar === "n") {
-    passwordArray.push("Z");
+    passwordArray = passwordArray.concat(lowerCasedCharacters);
+  } else if (lowCaseChar === "no") {
+  	passwordArray = passwordArray.concat(specialCharacters, numericCharacters);
   }
   if (upperCaseChar === "y") {
-    randomItem = upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)];
-    passwordArray.push(randomItem)
-  } else if (upperCaseChar === "n") {
-    passwordArray.push("0");
+    passwordArray = passwordArray.concat(upperCasedCharacters);
+  } else if (upperCaseChar === "no") {
+  	passwordArray = passwordArray.concat(specialCharacters, numericCharacters, lowerCasedCharacters);
+  }
+
+  for (let i = passwordArray.length -1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i+1));
+    let k = passwordArray[i];
+    passwordArray[i] = passwordArray[j];
+    passwordArray[j] = k;
   }
 }
 
-getPasswordOptions()
-getRandom()
+getArray()
+
+console.log("Password length is: " + passwordLength);
+
+function getRandom() {
+  randomItem = passwordArray[Math.floor(Math.random() * passwordArray.length)];
+  password.push(randomItem)
+}
+
+console.log("Password array is: " + passwordArray);
 
 // Function to generate password with user input
 function generatePassword() {
@@ -156,15 +171,14 @@ function generatePassword() {
     getRandom()
   }
   
-  passwordArray.length = passwordArray.length / 4 - 1;
-  
-  password = passwordArray.join('');
+  password = password.join('');
 }
 
 generatePassword()
 
-console.log(passwordArray);
-console.log(password);
+console.log("Password array length is: " + passwordArray.length);
+console.log("Password is: " + password);
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -177,6 +191,7 @@ function writePassword() {
 }
 
 // Add event listener to generate button
+
 generateBtn.addEventListener('click', writePassword);
 
 writePassword()
